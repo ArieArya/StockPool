@@ -23,7 +23,7 @@ pip3 install -q pthflops
 - **StockPool.py** contains the StockPool GNN model
 - **GraphConstruction.py** contains the three methods of stock graph construction (sector-wise, correlation, DTW)
 - *./historical_data_snp/* contains the preprocessed historical S&P500 data
-- *./saved_models/* contains a saved StockPool GNN model whose performance is quoted in the dissertation paper
+- *./saved_models/StockPool.pth* contains a saved StockPool GNN model whose performance is quoted in the dissertation paper
 - *./snp_info/* contains core information regarding the S&P500 dataset, including the GICS industries & subindustries, cross-correlation, and DTW distance
 
 ---
