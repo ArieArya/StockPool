@@ -7,9 +7,9 @@ from torch import nn
 from torch_geometric_temporal.signal import temporal_signal_split
 
 # general libraries
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import time
 import math
 from tqdm import tqdm
@@ -32,9 +32,10 @@ if torch.cuda.is_available():
 # GPU compatibility
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-# define main function
+#####################
+### Main Function ###
+#####################
 if __name__ == "__main__":
-    
     # extract all stock quotes
     snp = pd.read_csv('snp_info/snp_info.csv')
     stock_quotes = list(snp['Symbol'])
@@ -55,7 +56,6 @@ if __name__ == "__main__":
     quote_to_idx = {stock_quote: i for i, stock_quote in enumerate(stock_quotes)}
     idx_to_quote = {i: stock_quote for i, stock_quote in enumerate(stock_quotes)}
 
-    
     # --------------------------------------------------
     # --- Obtain StockPool Cluster Assignment Matrix ---
     # --------------------------------------------------
@@ -93,7 +93,6 @@ if __name__ == "__main__":
     for i in range(len(gics_subindustry_keys)):
         industry = snp[snp['GICS Sub Industry'] == gics_subindustry_keys[i]]['GICS Sector'].iloc[0]
     S_industry[i, gics_industry_map[industry]] = 1
-
 
     # -----------------------
     # --- Construct Graph ---
@@ -206,7 +205,6 @@ if __name__ == "__main__":
                 if patience == 0:
                     print("early stopping triggered...")
                     # break
-
             print("Epoch {}/{} Train BCE: {:.6f}, Test BCE: {:.6f}, Test Accuracy: {:.6f}".format(epoch, epochs, cost.item(), test_cost.item(), test_acc))
         
     # ----------------------
@@ -284,10 +282,9 @@ if __name__ == "__main__":
                            columns=['Base Accuracy', 'StockPool GNN Accuracy'])
     print(bin_acc_table)
 
-
-    # ---------------------------
-    # --- Perform Backtesting ---
-    # ---------------------------
+    # --------------------------------------
+    # --- Perform Backtesting Simulation ---
+    # --------------------------------------
     print('''
           
           5. Perform Backtesting Simulation

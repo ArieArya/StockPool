@@ -3,7 +3,9 @@ import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 from torch import nn
 
-# define base 3-layer GCN model
+##############################
+### Base 3-Layer GCN Model ###
+##############################
 class GNN(torch.nn.Module):
   def __init__(self, in_channels, hidden_channels, out_channels, normalize=True):
     super(GNN, self).__init__()
@@ -19,7 +21,9 @@ class GNN(torch.nn.Module):
       x = F.relu(self.convs[step](x, adj, mask))
     return x
 
-# define stock pooling operation
+############################
+### Stock Pool Operation ###
+############################
 def stock_pool(x, adj, s,  mask=None):
     x = x.unsqueeze(0) if x.dim() == 2 else x
     adj = adj.unsqueeze(0) if adj.dim() == 2 else adj
@@ -34,7 +38,9 @@ def stock_pool(x, adj, s,  mask=None):
     out_adj = torch.matmul(torch.matmul(s.transpose(1, 2), adj), s)
     return out, out_adj, None, None
 
-# Define Stock Pooling Class
+#####################
+### StockPool GNN ###
+#####################
 class StockPool(torch.nn.Module):
   def __init__(self, hidden_nodes, num_features, num_nodes, S_subindustry, S_industry):
     super(StockPool, self).__init__()

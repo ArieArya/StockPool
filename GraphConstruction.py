@@ -21,7 +21,6 @@ def build_correlation_graph_dataset(quote_to_idx, features_df_dict, stock_quotes
     # load correlation data
     with open('snp_info/snp_correlation_dict.pkl', 'rb') as f:
       correlation_dict = pickle.load(f)
-
   data_len = len(features_df_dict[stock_quotes[1]])
 
   # define required parameters
@@ -59,8 +58,8 @@ def build_correlation_graph_dataset(quote_to_idx, features_df_dict, stock_quotes
         except Exception as e:
           print(e)
 
-  print("Building node feature embeddings...")
   # obtain node features at each snapshot
+  print("Building node feature embeddings...")
   for i in tqdm(range(data_len - lags + 1)):
     f1 = []
     for stock_quote in stock_quotes:
@@ -195,7 +194,6 @@ def build_dtw_graph_dataset(quote_to_idx, features_df_dict, stock_quotes, lags=1
     # load correlation data
     with open('snp_info/snp_dtw_dict.pkl', 'rb') as f:
       dtw_dict = pickle.load(f)
-
   data_len = len(features_df_dict[stock_quotes[1]])
 
   # define required parameters
