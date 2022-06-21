@@ -1,4 +1,4 @@
-# Financial Modelling via Graph Neural Networks with Custom Pooling
+## Financial Modelling via Graph Neural Networks with Custom Pooling
 This repository contains only the core code and S&P500 dataset for the implementation of the StockPool GNN model. The full original codebase is based on Google Colaboratory, 
 and is not fully ported into this online repository.
 
@@ -6,7 +6,13 @@ and is not fully ported into this online repository.
 
 ### PyTorch Dependencies
 ```
+# for CPU
 pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric torch-geometric-temporal -f https://data.pyg.org/whl/torch-1.11.0%2Bcpu.html
+
+# for CUDA GPU
+pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric torch-geometric-temporal -f https://data.pyg.org/whl/torch-1.11.0+cu113.html
+
+# install pthflops to estimate network FLOPs
 pip3 install -q pthflops
 ```
 
@@ -17,7 +23,7 @@ pip3 install -q pthflops
 - **StockPool.py** contains the StockPool GNN model
 - **GraphConstruction.py** contains the three methods of stock graph construction (sector-wise, correlation, DTW)
 - *./historical_data_snp/* contains the preprocessed historical S&P500 data
-- *./saved_models/* contains a saved StockPool GNN model whose performance is quoted in the dissertation paper
+- *./saved_models/StockPool.pth* contains a saved StockPool GNN model whose performance is quoted in the dissertation paper
 - *./snp_info/* contains core information regarding the S&P500 dataset, including the GICS industries & subindustries, cross-correlation, and DTW distance
 
 ---
