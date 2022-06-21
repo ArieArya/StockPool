@@ -1,4 +1,4 @@
-# Financial Modelling via Graph Neural Networks with Custom Pooling
+## Financial Modelling via Graph Neural Networks with Custom Pooling
 This repository contains only the core code and S&P500 dataset for the implementation of the StockPool GNN model. The full original codebase is based on Google Colaboratory, 
 and is not fully ported into this online repository.
 
