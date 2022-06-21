@@ -44,6 +44,7 @@ if __name__ == "__main__":
     # obtain node feature embeddings
     node_features = {}
     print('''
+          
           1. Fetching Historical Data
           ''')
     for stock_quote in tqdm(stock_quotes):
@@ -98,6 +99,7 @@ if __name__ == "__main__":
     # --- Construct Graph ---
     # -----------------------
     print('''
+          
           2. Constructing Stock Graph
           ''')
     periods = 10
@@ -138,6 +140,7 @@ if __name__ == "__main__":
     # --- Train Model ---
     # -------------------
     print('''
+          
           3. Training / Loading Model
           ''')
     train_model = False
@@ -210,6 +213,7 @@ if __name__ == "__main__":
     # --- Evaluate Model ---
     # ----------------------
     print('''
+          
           4. Evaluating Model - Binary Accuracy
           ''')
     model.eval()
@@ -285,6 +289,7 @@ if __name__ == "__main__":
     # --- Perform Backtesting ---
     # ---------------------------
     print('''
+          
           5. Perform Backtesting Simulation
           ''')
     
