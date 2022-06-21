@@ -2,22 +2,11 @@
 ### Library Imports ###
 #######################
 # torch geometric
-import torch_geometric
 import torch
 from torch import nn
-from torch.nn import Sequential, Linear, ReLU, Sigmoid
-from torch_geometric.utils import to_networkx
-from torch_geometric.data import Data
-from torch_geometric.loader import DataLoader
-from torch_geometric.nn.conv import MessagePassing
-from torch.nn import Sequential as Seq, Linear as Lin, ReLU, Sigmoid
-from sklearn.preprocessing import MinMaxScaler
-from torch_geometric_temporal.signal.static_graph_temporal_signal import StaticGraphTemporalSignal
 from torch_geometric_temporal.signal import temporal_signal_split
 
 # general libraries
-import scipy.io as sio
-import statsmodels.api as sm
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -42,9 +31,6 @@ if torch.cuda.is_available():
   
 # GPU compatibility
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
-
 
 # define main function
 if __name__ == "__main__":
