@@ -59,11 +59,11 @@ if __name__ == "__main__":
     # --------------------------------------------------
     # --- Obtain StockPool Cluster Assignment Matrix ---
     # --------------------------------------------------
-    # obtain GICS sub-industries
+    # extract GICS sub-industries
     gics_subindustry = list(
         snp[snp['Symbol'].isin(stock_quotes)]['GICS Sub Industry'])
 
-    # sort to unique index
+    # obtain GICS subinudstry supernode map
     gics_subindustry_map = {}
     idx = 0
     for sub in gics_subindustry:
@@ -71,15 +71,16 @@ if __name__ == "__main__":
             gics_subindustry_map[sub] = idx
             idx += 1
 
-    # compute the GICS Subindustry matrix
+    # compute the GICS Sub-industry matrix
     S_subindustry = torch.zeros(len(stock_quotes), len(gics_subindustry_map)).to(device)
     for i in range(len(stock_quotes)):
         subindustry = snp[snp['Symbol'] == stock_quotes[i]]['GICS Sub Industry'].item()
         S_subindustry[i, gics_subindustry_map[subindustry]] = 1
-
+        
+    # extract GICS industries 
     gics_industry = snp[snp['Symbol'].isin(stock_quotes)]['GICS Sector']
 
-    # sort to unique index
+    # obtain GICS industry supernode map
     gics_industry_map = {}
     idx = 0
     for industry in gics_industry:
@@ -92,7 +93,7 @@ if __name__ == "__main__":
     S_industry = torch.zeros(len(gics_subindustry_map), len(gics_industry_map)).to(device)
     for i in range(len(gics_subindustry_keys)):
         industry = snp[snp['GICS Sub Industry'] == gics_subindustry_keys[i]]['GICS Sector'].iloc[0]
-    S_industry[i, gics_industry_map[industry]] = 1
+        S_industry[i, gics_industry_map[industry]] = 1
 
     # -----------------------
     # --- Construct Graph ---
