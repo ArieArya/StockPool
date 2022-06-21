@@ -6,7 +6,13 @@ and is not fully ported into this online repository.
 
 ### PyTorch Dependencies
 ```
+# for CPU
 pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric torch-geometric-temporal -f https://data.pyg.org/whl/torch-1.11.0%2Bcpu.html
+
+# for CUDA GPU
+pip3 install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric torch-geometric-temporal -f https://data.pyg.org/whl/torch-1.11.0+cu113.html
+
+# install pthflops to estimate network FLOPs
 pip3 install -q pthflops
 ```
 
